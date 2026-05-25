@@ -126,11 +126,6 @@
                 <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
                 <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
                 <img src="assets/img/avatar4.png">
-                <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
-                <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
-                <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
-                <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
-                <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
                 @yield('content')
                 </center>
               </div>

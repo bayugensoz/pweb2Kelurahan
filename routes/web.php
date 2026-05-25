@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/kelurahan', [KelurahanController::class, 'index']);
+Route::get('/penduduk', [KelurahanController::class, 'penduduk']);
