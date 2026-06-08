@@ -3,21 +3,24 @@
 @section('title', 'Data Penduduk')
 
 @section('content')
-    <h1>Penduduk</h1>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Head 1</th>
-                <th>Head 2</th>
-                <th>Head 3</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $id }}</td>
-                <td>{{ $id2 }}</td>
-                <td>{{ $id3 }}</td>
-            </tr>
-        </tbody>
-    </table>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>NIK</th>
+            <th>NAMA</th>
+            <th>JK</th>
+            <th>ALAMAT</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($warga as $item)
+        <tr>
+            <td>{{ $item->nik }}</td>
+            <td>{{ $item->nama }}</td>
+            <td>{{ $item->jk }}</td>
+            <td>{{ $item->alamat }}</td>
+        </tr> 
+        @endforeach
+    </tbody>
+</table>
 @endsection
