@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Penduduk;
+use App\Models\Surat;
 
 class KelurahanController extends Controller
 {
@@ -22,10 +23,15 @@ class KelurahanController extends Controller
     //     return view('penduduk', compact('nik', 'nama', 'jk', 'alamat'));
     // }
 
-    public function penduduk() {
+    public function daftarPenduduk() {
         // Mengambil seluruh data dari database melalui Model 
         $warga = Penduduk::all(); 
         return view('penduduk', compact('warga'));
+    }
+
+    public function daftarSurat() {
+        $semuaSurat = Surat::with('penduduk')->get();
+        return view('surat_index', compact('semuaSurat'));
     }
 
 }

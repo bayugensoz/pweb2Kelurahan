@@ -7,9 +7,9 @@
     <thead>
         <tr>
             <th>NIK</th>
-            <th>NAMA</th>
-            <th>JK</th>
-            <th>ALAMAT</th>
+            <th>Nama</th>
+            <th>Jenis Kelamin</th>
+            <th>Alamat</th>
         </tr>
     </thead>
     <tbody>
