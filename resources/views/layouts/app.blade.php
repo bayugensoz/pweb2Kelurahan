@@ -98,7 +98,7 @@
             <!--begin::Row-->
             <div class="row">
               <div class="col-sm-6">
-                <h3 class="mb-0">Dashboard</h3>
+                <h3 class="mb-0">Kelurahan 242011069</h3>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
@@ -119,15 +119,15 @@
             <!--begin::Row-->
             <div class="row">
               <div class="col">
-                <center>
+                <!-- <center>
                 <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
                 <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
                 <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
                 <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
                 <h4 class="mb-0">Sugeng enjang poro rawuh ainhaiouanoanoianbhoainbhoainboaoau</h4>
                 <img src="assets/img/avatar4.png">
+                </center> -->
                 @yield('content')
-                </center>
               </div>
             </div>
             <!--end::Row-->

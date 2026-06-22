@@ -26,10 +26,10 @@ class SuratSeeder extends Seeder
         // }
 
         Surat::create([
-                'nomor_surat' => '002/MK/2026',
-                'jenis_surat' => 'Surat Pengantar SKCK',
-                'tanggal_ajuan' => '2026-05-16',
-                'penduduk_id' => 2,
-            ]);
+            'nomor_surat' => '002/MK/2026',
+            'jenis_surat' => 'Surat Pengantar SKCK',
+            'tanggal_ajuan' => '2026-05-16',
+            'penduduk_id' => 2,
+        ]);
     }
 }
