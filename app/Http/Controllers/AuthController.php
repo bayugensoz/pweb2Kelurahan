@@ -31,7 +31,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
  
             // Mengalihkan pengguna ke halaman tujuan semula sebelum dicegat, atau ke halaman utama
-            return redirect()->intended('/surat')->with('sukses', 'Selamat Datang Kembali di Aplikasi Simpel-K!');
+            return redirect()->intended('/surat')->with('sukses', 'Selamat Datang Kembali di Aplikasi Kelurahan 242011069!');
         }
  
         // Jika pencocokan gagal, kembalikan ke form login dengan pesan kesalahan eksplisit

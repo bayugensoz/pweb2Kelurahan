@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SuratController;
+use App\Http\Controllers\KelurahanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +27,6 @@ Route::middleware(['auth'])->group(function () {
     // Penanganan Aksi Keluar Aplikasi
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
  
-    // Proteksi Total Rute CRUD Surat Aplikasi Simpel-K dari Serangan Manipulasi Tembak URL
+    // Proteksi Total Rute CRUD Surat Aplikasi Kelurahan 242011069 dari Serangan Manipulasi Tembak URL
     Route::resource('surat', SuratController::class);
 });
