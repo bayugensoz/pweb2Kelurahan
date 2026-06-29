@@ -46,13 +46,13 @@ class SuratSeeder extends Seeder
             'Surat Pengantar Nikah'
         ];
 
-        foreach (range(1, 100) as $i) {
+        foreach (range(1, 30) as $i) {
 
             Surat::create([
                 'nomor_surat' => sprintf('%03d/KEL/%d', $i, date('Y')),
                 'jenis_surat' => $jenisSurat[array_rand($jenisSurat)],
                 'tanggal_ajuan' => now()->subDays(rand(0,365)),
-                'penduduk_id' => rand(1,50),
+                'penduduk_id' => rand(1,20),
             ]);
         }
     }

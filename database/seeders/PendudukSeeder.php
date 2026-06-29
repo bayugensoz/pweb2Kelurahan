@@ -53,7 +53,7 @@ class PendudukSeeder extends Seeder
             'Eko Prasetyo'
         ];
 
-        foreach (range(1, 50) as $i) {
+        foreach (range(1, 20) as $i) {
             Penduduk::create([
                 'nik' => '3507123456' . str_pad($i, 6, '0', STR_PAD_LEFT),
                 'nama' => $nama[array_rand($nama)],

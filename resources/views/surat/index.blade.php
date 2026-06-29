@@ -54,6 +54,7 @@
                         <th scope="col" class="px-6 py-3.5">Nama Pemohon</th>
                         <th scope="col" class="px-6 py-3.5">NIK Pemohon</th>
                         <th scope="col" class="px-6 py-3.5">Tanggal Ajuan</th>
+                        <th scope="col" class="px-6 py-3.5">Berkas Pendukung</th>
                         <th scope="col" class="px-6 py-3.5 text-center w-40">Aksi</th>
                     </tr>
                 </thead>
@@ -73,6 +74,31 @@
                         <td class="px-6 py-4 font-mono text-xs text-slate-500">{{ $s->penduduk->nik }}</td>
                         <td class="px-6 py-4 text-xs font-medium text-slate-500">
                             {{ \Carbon\Carbon::parse($s->tanggal_ajuan)->format('d-m-Y') }}
+                        </td>
+                        <td>
+                            @if($s->berkas_pendukung)
+                                @php
+                                    $ext = strtolower(pathinfo($s->berkas_pendukung, PATHINFO_EXTENSION));
+                                @endphp
+
+                                @if(in_array($ext, ['jpg', 'png']))
+                                    <a href="{{ asset('storage/' . $s->berkas_pendukung) }}" target="_blank">
+                                        <img
+                                            src="{{ asset('storage/' . $s->berkas_pendukung) }}"
+                                            alt="Berkas Pendukung"
+                                            class="rounded shadow-sm border"
+                                            style="width: 58px; height: 58px; object-fit: cover;">
+                                    </a>
+                                @elseif($ext === 'pdf')
+                                    <a href="{{ asset('storage/' . $s->berkas_pendukung) }}" target="_blank" class="btn btn-outline-danger btn-sm">
+                                        Lihat PDF
+                                    </a>
+                                @else
+                                    <span class="badge bg-secondary">File tersedia</span>
+                                @endif
+                            @else
+                                <span class="badge bg-warning text-dark">Belum ada berkas</span>
+                            @endif
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center justify-center gap-2">

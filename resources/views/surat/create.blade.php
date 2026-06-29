@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="max-w-2xl mx-auto space-y-6">
-    <!-- Breadcrumb back link -->
     <div class="flex items-center">
         <a href="{{ route('surat.index') }}" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -14,14 +13,12 @@
         </a>
     </div>
 
-    <!-- Form Container Card -->
     <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
         <div class="px-6 py-5 border-b border-slate-200 bg-slate-50/50">
             <h3 class="text-base font-bold text-slate-900">Form Pengajuan Surat Baru</h3>
             <p class="text-xs text-slate-500 mt-1">Isi formulir pengajuan dengan nomor surat resmi, tipe surat, dan pemohon terkait.</p>
         </div>
 
-        <!-- Global Errors display -->
         @if ($errors->any())
             <div class="p-4 mx-6 mt-6 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm">
                 <div class="flex items-center gap-2 mb-2">
@@ -38,11 +35,11 @@
             </div>
         @endif
 
-        <form action="{{ route('surat.store') }}" method="POST">
+        {{-- UPDATE: Ditambahkan enctype="multipart/form-data" --}}
+        <form action="{{ route('surat.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="p-6 space-y-5">
-                <!-- Nomor Surat -->
                 <div>
                     <label for="nomor_surat" class="block text-sm font-medium text-slate-700 mb-1.5">
                         Nomor Surat <span class="text-rose-500">*</span>
@@ -56,7 +53,6 @@
                            class="appearance-none block w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 focus:bg-white transition-all text-sm text-slate-800" />
                 </div>
 
-                <!-- Jenis Surat -->
                 <div>
                     <label for="jenis_surat" class="block text-sm font-medium text-slate-700 mb-1.5">
                         Jenis Surat <span class="text-rose-500">*</span>
@@ -74,7 +70,6 @@
                     </div>
                 </div>
 
-                <!-- Warga Pemohon -->
                 <div>
                     <label for="penduduk_id" class="block text-sm font-medium text-slate-700 mb-1.5">
                         Warga Pemohon <span class="text-rose-500">*</span>
@@ -92,7 +87,6 @@
                     </div>
                 </div>
 
-                <!-- Tanggal Pengajuan -->
                 <div>
                     <label for="tanggal_ajuan" class="block text-sm font-medium text-slate-700 mb-1.5">
                         Tanggal Pengajuan <span class="text-rose-500">*</span>
@@ -104,9 +98,42 @@
                            required
                            class="appearance-none block w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 focus:bg-white transition-all text-sm text-slate-800" />
                 </div>
+
+                <div class="pt-4 border-t border-slate-100 space-y-4">
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Berkas Pendukung Permohonan</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Upload dokumen pendukung seperti KTP atau KK agar proses verifikasi permohonan surat lebih mudah dilakukan.</p>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 space-y-1">
+                        <strong class="text-slate-800">Ketentuan file:</strong>
+                        <p>Format yang diperbolehkan adalah <span class="font-semibold text-slate-700">JPG, PNG, atau PDF</span> dengan ukuran maksimal <span class="font-semibold text-slate-700">2MB</span>.</p>
+                    </div>
+
+                    <div>
+                        <label for="berkas_pendukung" class="block text-sm font-medium text-slate-700 mb-1.5">
+                            Upload KTP/KK Pendukung
+                        </label>
+
+                        <input type="file"
+                               name="berkas_pendukung"
+                               id="berkas_pendukung"
+                               accept=".jpg,.png,.pdf"
+                               class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border border-slate-200 bg-slate-50 rounded-xl focus:outline-none cursor-pointer @error('berkas_pendukung') border-rose-500 bg-rose-50/30 @enderror" />
+
+                        @error('berkas_pendukung')
+                            <p class="mt-1 text-xs text-rose-600 font-medium">{{ $message }}</p>
+                        @enderror
+
+                        <div class="mt-1.5 text-xs text-slate-400">
+                            Pastikan dokumen terlihat jelas dan sesuai dengan data permohonan.
+                        </div>
+
+                        <div id="preview-file" class="text-xs text-blue-600 mt-2 font-medium"></div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Footer Buttons -->
             <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-3">
                 <a href="{{ route('surat.index') }}" class="px-4 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-xs rounded-xl transition-all shadow-2xs">
                     Batal
@@ -118,4 +145,21 @@
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const berkasPendukung = document.getElementById('berkas_pendukung');
+        const previewFile = document.getElementById('preview-file');
+
+        if (berkasPendukung) {
+            berkasPendukung.addEventListener('change', function () {
+                if (this.files.length > 0) {
+                    previewFile.innerHTML = 'File dipilih: <span class="font-bold text-slate-800">' + this.files[0].name + '</span>';
+                } else {
+                    previewFile.innerHTML = '';
+                }
+            });
+        }
+    });
+</script>
 @endsection

@@ -39,6 +39,7 @@ class SuratController extends Controller
             'jenis_surat' => 'required',
             'penduduk_id' => 'required|numeric',
             'tanggal_ajuan' => 'required|date',
+            'berkas_pendukung' => 'nullable|file|mimes:jpg,png,pdf|max:2048'
         ], [
             'nomor_surat.required' => 'Nomor surat wajib diisi.',
             'nomor_surat.unique' => 'Nomor surat tersebut sudah terdaftar di
@@ -46,6 +47,15 @@ sistem.',
             'jenis_surat.required' => 'Silakan pilih jenis surat.',
             'penduduk_id.required' => 'Warga pemohon wajib dipilih.',
         ]);
+
+        if ($request->hasFile('berkas_pendukung')) {
+            $namaFile = time() . '_' . $request->file('berkas_pendukung')->getClientOriginalName();
+            $path = $request->file('berkas_pendukung')->storeAs('berkas_surat', $namaFile, 'public');
+
+            $validatedData['berkas_pendukung'] = $path;
+        }
+
+
         // 2. Simpan ke Database Menggunakan Mass Assignment Eloquent
         Surat::create($validatedData);
         // 3. Redirect dengan Flash Session
